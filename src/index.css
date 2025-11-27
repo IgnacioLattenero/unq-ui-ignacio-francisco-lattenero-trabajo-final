@@ -1,68 +1,141 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+    --color-primary: #6a1b9a; /* Violeta Preguntados */
+    --color-secondary: #00b894; /* Verde */
+    --color-accent: #ff7675; /* Rojo suave */
+    --color-bg-card: #ffffff;
+    --shadow: 0 6px 0 rgba(0,0,0,0.15); /* Efecto 3D */
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    /* Fondo */
+    background-image: url('./assets/.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Centrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* La tarjeta del celular (Sirve para TODAS las pantallas) */
+.app-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Blanco con transparencia */
+    width: 90%;
+    max-width: 420px;
+    min-height: 600px;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Títulos */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    color: var(--color-primary);
+    font-weight: 900;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Estilos Generales de Botones */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 50px; /* Redondos */
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    position: relative;
+    top: 0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Efecto al presionar (el botón baja) */
+button:active {
+    top: 4px;
+    box-shadow: none !important;
+}
+
+/* --- CLASES ESPECÍFICAS PARA CADA BOTÓN --- */
+
+/* 1. Botones de Dificultad (Naranjas/Amarillos) */
+.btn-difficulty {
+    background-color: #fdcb6e;
+    color: #2d3436;
+    box-shadow: 0 5px 0 #e1b12c;
+}
+.btn-difficulty:hover {
+    background-color: #ffeaa7;
+}
+
+/* 2. Botones de Opciones (Blancos/Grises) */
+.btn-option {
+    background-color: #f1f2f6;
+    color: #2d3436;
+    box-shadow: 0 5px 0 #ced6e0;
+}
+.btn-option:hover:not(:disabled) {
+    background-color: #dfe4ea;
+    transform: scale(1.02);
+}
+
+/* 3. Botones de Acción (Jugar de nuevo - Violeta) */
+.btn-action {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 5px 0 #4a0e6e;
+    margin-top: 20px;
+}
+
+/* Semáforo (Feedback) */
+.correct {
+    background-color: #00b894 !important; /* Verde */
+    color: white !important;
+    box-shadow: 0 5px 0 #00896d !important;
+}
+
+.incorrect {
+    background-color: #ff7675 !important; /* Rojo */
+    color: white !important;
+    box-shadow: 0 5px 0 #d63031 !important;
+}
+
+.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Otros detalles */
+.loader {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin: auto;
+    font-weight: bold;
+}
+
+.score-badge {
+    background: var(--color-primary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: inline-block;
 }

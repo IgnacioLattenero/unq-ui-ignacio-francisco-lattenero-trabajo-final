@@ -21,6 +21,7 @@ export const DifficultySelector = ({ onSelect }) => {
                     key={diff}
                     onClick={() => onSelect(diff)} // Avisamos al padre que eligieron uno
                     style={{ margin: '5px', padding: '10px' }}
+                    className="btn-difficulty"
                 >
                     {diff}
                 </button>
