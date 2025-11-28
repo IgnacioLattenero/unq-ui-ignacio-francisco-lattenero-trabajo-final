@@ -87,7 +87,7 @@ function App() {
         <div className="app-container">
             {/* CABECERA FIJA */}
             <div className="header">
-                <h1>Preguntados UNQ</h1>
+                <h1>Preguntados</h1>
                 {gameStatus === 'PLAYING' && (
                     <div className="score-tag">Racha: {score}</div>
                 )}
