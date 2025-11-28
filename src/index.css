@@ -1,12 +1,11 @@
-/* src/index.css */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
 
 :root {
-    --color-primary: #6a1b9a; /* Violeta Preguntados */
-    --color-secondary: #00b894; /* Verde */
-    --color-accent: #ff7675; /* Rojo suave */
+    --color-primary: #6a1b9a;
+    --color-secondary: #00b894;
+    --color-accent: #ff7675;
     --color-bg-card: #ffffff;
-    --shadow: 0 6px 0 rgba(0,0,0,0.15); /* Efecto 3D */
+    --shadow: 0 6px 0 rgba(0,0,0,0.15);
 }
 
 body {
@@ -14,20 +13,20 @@ body {
     font-family: 'Nunito', sans-serif;
     height: 100vh;
     width: 100vw;
-    /* Fondo */
+
     background-image: url('../public/fondo.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Centrado */
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* La tarjeta del celular (Sirve para TODAS las pantallas) */
+
 .app-container {
-    background-color: rgba(255, 255, 255, 0.95); /* Blanco con transparencia */
+    background-color: rgba(255, 255, 255, 0.95);
     width: 90%;
     max-width: 420px;
     min-height: 600px;
@@ -41,7 +40,6 @@ body {
     overflow: hidden;
 }
 
-/* Títulos */
 h1 {
     color: var(--color-primary);
     font-weight: 900;
@@ -51,12 +49,12 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Estilos Generales de Botones */
+
 button {
     width: 100%;
     padding: 16px;
     border: none;
-    border-radius: 50px; /* Redondos */
+    border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 800;
     cursor: pointer;
@@ -67,15 +65,13 @@ button {
     top: 0;
 }
 
-/* Efecto al presionar (el botón baja) */
+
 button:active {
     top: 4px;
     box-shadow: none !important;
 }
 
-/* --- CLASES ESPECÍFICAS PARA CADA BOTÓN --- */
 
-/* 1. Botones de Dificultad (Naranjas/Amarillos) */
 .btn-difficulty {
     background-color: #fdcb6e;
     color: #2d3436;
@@ -85,7 +81,7 @@ button:active {
     background-color: #ffeaa7;
 }
 
-/* 2. Botones de Opciones (Blancos/Grises) */
+
 .btn-option {
     background-color: #f1f2f6;
     color: #2d3436;
@@ -96,7 +92,7 @@ button:active {
     transform: scale(1.02);
 }
 
-/* 3. Botones de Acción (Jugar de nuevo - Violeta) */
+
 .btn-action {
     background-color: var(--color-primary);
     color: white;
@@ -104,7 +100,7 @@ button:active {
     margin-top: 20px;
 }
 
-/* Semáforo (Feedback) */
+
 .correct {
     background-color: #00b894 !important; /* Verde */
     color: white !important;
@@ -122,7 +118,6 @@ button:active {
     pointer-events: none;
 }
 
-/* Otros detalles */
 .loader {
     font-size: 1.5rem;
     color: var(--color-primary);

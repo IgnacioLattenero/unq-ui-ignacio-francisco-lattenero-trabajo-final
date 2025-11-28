@@ -1,4 +1,3 @@
-// src/api.js
 const BASE_URL = 'https://preguntados-api.vercel.app/api';
 
 export const getDifficulties = async () => {

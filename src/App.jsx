@@ -1,28 +1,25 @@
-// src/App.jsx
 import React, { useState } from 'react';
 import { DifficultySelector } from './DifficultySelector';
 import { QuestionCard } from './QuestionCard';
 import { getQuestions, checkAnswer } from './api';
 
 function App() {
-    // ESTADOS
-    const [gameStatus, setGameStatus] = useState('MENU'); // MENU | PLAYING | GAME_OVER | WIN
+
+    const [gameStatus, setGameStatus] = useState('MENU');
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState(0);
 
-    // ESTADOS VISUALES (Para el color verde/rojo)
     const [isThinking, setIsThinking] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isCorrect, setIsCorrect] = useState(null);
 
-    // 1. INICIAR JUEGO
     const handleStartGame = async (difficulty) => {
         setGameStatus('LOADING');
         try {
             const questionsData = await getQuestions(difficulty);
             setQuestions(questionsData);
-            setCurrentQuestionIndex(0); // Empezamos en la 0
+            setCurrentQuestionIndex(0);
             setScore(0);
             setGameStatus('PLAYING');
         } catch (error) {
@@ -31,38 +28,33 @@ function App() {
         }
     };
 
-    // 2. MANEJO DE RESPUESTA (Lógica Muerte Súbita)
     const handleAnswer = async (questionId, selectedOption) => {
-        if (isThinking) return; // Evita doble click
+        if (isThinking) return;
         setIsThinking(true);
         setSelectedAnswer(selectedOption);
 
         try {
-            // Validamos con la API
             const result = await checkAnswer(questionId, selectedOption);
-            setIsCorrect(result.answer); // true o false
+            setIsCorrect(result.answer);
 
-            // Esperamos 1.5 segundos viendo el color
             setTimeout(() => {
                 if (result.answer === true) {
-                    // --- SI ES CORRECTA: SIGUE JUGANDO ---
                     setScore(prev => prev + 1);
 
                     const nextIndex = currentQuestionIndex + 1;
                     if (nextIndex < questions.length) {
                         setCurrentQuestionIndex(nextIndex);
-                        // Reseteamos visuales para la siguiente
                         setSelectedAnswer(null);
                         setIsCorrect(null);
                         setIsThinking(false);
                     } else {
-                        // Si respondiste BIEN todas
+
                         setGameStatus('WIN');
                         setIsThinking(false);
                     }
 
                 } else {
-                    // --- SI ES INCORRECTA: PERDISTE (A CASA) ---
+
                     setGameStatus('GAME_OVER');
                     setIsThinking(false);
                 }
@@ -74,7 +66,7 @@ function App() {
         }
     };
 
-    // 3. VOLVER AL INICIO
+
     const resetGame = () => {
         setGameStatus('MENU');
         setQuestions([]);
@@ -85,7 +77,6 @@ function App() {
 
     return (
         <div className="app-container">
-            {/* CABECERA FIJA */}
             <div className="header">
                 <h1>Preguntados</h1>
                 {gameStatus === 'PLAYING' && (
@@ -93,15 +84,13 @@ function App() {
                 )}
             </div>
 
-            {/* --- PANTALLA 1: MENU --- */}
             {gameStatus === 'MENU' && (
                 <DifficultySelector onSelect={handleStartGame} />
             )}
 
-            {/* --- PANTALLA 2: CARGANDO --- */}
             {gameStatus === 'LOADING' && <div className="loader">Buscando preguntas...</div>}
 
-            {/* --- PANTALLA 3: JUEGO --- */}
+
             {gameStatus === 'PLAYING' && questions.length > 0 && (
                 <QuestionCard
                     question={questions[currentQuestionIndex]}
@@ -112,7 +101,6 @@ function App() {
                 />
             )}
 
-            {/* --- PANTALLA 4: PERDISTE (GAME OVER) --- */}
             {gameStatus === 'GAME_OVER' && (
                 <div className="result-screen lose">
                     <h2>❌ ¡Respuesta Incorrecta!</h2>
@@ -124,7 +112,7 @@ function App() {
                 </div>
             )}
 
-            {/* --- PANTALLA 5: GANASTE TODO --- */}
+
             {gameStatus === 'WIN' && (
                 <div className="result-screen win">
                     <h2>🏆 ¡Completaste el juego!</h2>
